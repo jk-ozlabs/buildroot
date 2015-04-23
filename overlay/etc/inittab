@@ -21,7 +21,13 @@ null::sysinit:/bin/mkdir -p /dev/shm
 null::sysinit:/bin/mount -a
 null::sysinit:/bin/hostname -F /etc/hostname
 # now run any rc scripts
-null::sysinit:/etc/init.d/rcS
+::sysinit:/etc/init.d/rcS
+
+# Openpower-specific gettys
+tty0::askfirst:/sbin/getty -L tty0 115200 vt100
+hvc0::askfirst:/sbin/getty -L hvc0 115200 vt100
+ttyS0::askfirst:/sbin/getty -L ttyS0 115200 vt100
+
 
 # Stuff to do for the 3-finger salute
 ::ctrlaltdel:/sbin/reboot
@@ -31,4 +37,3 @@ null::shutdown:/etc/init.d/rcK
 null::shutdown:/bin/umount -a -r
 null::shutdown:/sbin/swapoff -a
 
-null::restart:/usr/sbin/kexec-restart
