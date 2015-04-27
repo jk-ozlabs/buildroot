@@ -1,0 +1,13 @@
+--- kmod-17.orig/libkmod/libkmod-signature.c	2014-03-24 21:50:04.983084406 -0500
++++ kmod-17/libkmod/libkmod-signature.c	2015-04-27 12:31:43.441038291 -0500
+@@ -26,6 +26,10 @@
+ 
+ #include "libkmod-internal.h"
+ 
++#ifndef be32toh
++# define be32toh(x) ntohl(x)
++#endif
++
+ /* These types and tables were copied from the 3.7 kernel sources.
+  * As this is just description of the signature format, it should not be
+  * considered derived work (so libkmod can use the LGPL license).
